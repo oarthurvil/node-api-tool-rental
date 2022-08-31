@@ -17,6 +17,17 @@ export class UpdateUniqueFerramentaUseCase {
             throw new AppError("Ferramenta doesn't exist!");
         }
 
+        // verificar a existência do proprietario
+        const proprietarioAlreadyExists = await prisma.usuario.findUnique({
+            where: {
+                id: proprietarioId
+            }
+        })
+
+        if (!proprietarioAlreadyExists) {
+            throw new AppError("Proprietario doesn't exist!");
+        }
+
         const updateFerramenta = await prisma.ferramenta.update({
             where: {
                 id: id

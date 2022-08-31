@@ -40,6 +40,6 @@ model Locacao {
   ferramenta Ferramenta @relation(fields: [ferramentaId], references: [id])
   ferramentaId Int  @unique
 
-  locador Usuario @relation(fields: [locadorId], references: [id])
-  locadorId Int  @unique
+  locatario Usuario @relation(fields: [locatarioId], references: [id])
+  locatarioId Int
 }
