@@ -2,5 +2,5 @@ export interface CreateLocacaoDTO {
     valor: number;
     seguro: boolean;
     ferramentaId: number;
-    locatarioId:number;
+    locatarioId:string;
 }

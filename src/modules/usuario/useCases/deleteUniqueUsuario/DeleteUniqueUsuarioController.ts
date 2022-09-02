@@ -8,7 +8,7 @@ export class DeleteUniqueUsuarioController {
 
         const deleteUniqueUsuarioUseCase = new DeleteUniqueUsuarioUseCase();
 
-        const result = await deleteUniqueUsuarioUseCase.execute( Number(id) );
+        const result = await deleteUniqueUsuarioUseCase.execute( id );
 
         return res.status(201).json(result);
     }

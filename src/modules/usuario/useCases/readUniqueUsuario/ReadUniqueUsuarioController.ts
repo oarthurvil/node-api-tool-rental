@@ -8,7 +8,7 @@ export class ReadUniqueUsuarioController {
 
         const readUniqueUsuarioUseCase = new ReadUniqueUsuarioUseCase();
 
-        const result = await readUniqueUsuarioUseCase.execute( Number(id) );
+        const result = await readUniqueUsuarioUseCase.execute( id );
 
         return res.status(201).json(result);
     }

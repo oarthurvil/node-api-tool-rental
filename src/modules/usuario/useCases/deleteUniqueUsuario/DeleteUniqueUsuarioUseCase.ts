@@ -3,7 +3,7 @@ import { AppError } from "../../../../errors/AppError";
 import { prisma } from "../../../../prisma/client";
 
 export class DeleteUniqueUsuarioUseCase {
-    async execute( id: number ) {
+    async execute( id: string ) {
 
         // Verificar a existência de um usuario
         const usuarioAlreadyExists = await prisma.usuario.findUnique({

@@ -9,7 +9,7 @@ export class UpdateUniqueUsuarioController {
 
         const updateUniqueUsuarioUseCase = new UpdateUniqueUsuarioUseCase();
 
-        const result = await updateUniqueUsuarioUseCase.execute( Number(id), {nome, email, senha} );
+        const result = await updateUniqueUsuarioUseCase.execute( id, {nome, email, senha} );
 
         return res.status(201).json(result);
     }

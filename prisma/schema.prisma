@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Usuario {
-  id    Int    @id @default(autoincrement())
+  id    String    @id @default(uuid())
   nome String
   email String @unique
   senha String
@@ -27,7 +27,7 @@ model Ferramenta {
   localizacao String
 
   proprietario Usuario @relation(fields: [proprietarioId], references: [id])
-  proprietarioId Int
+  proprietarioId String
 
   locacao Locacao?
 }
@@ -41,5 +41,5 @@ model Locacao {
   ferramentaId Int  @unique
 
   locatario Usuario @relation(fields: [locatarioId], references: [id])
-  locatarioId Int
+  locatarioId String
 }
