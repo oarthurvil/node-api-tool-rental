@@ -8,7 +8,7 @@ export class ReadAllFerramentasUseCase {
         const ferramentaAlreadyExists = await prisma.ferramenta.findMany();
 
         if (ferramentaAlreadyExists.length === 0) {
-            throw new AppError("Ferramenta table is empty!");
+            throw new AppError("Não há ferramentas cadastradas!");
         }
 
         return ferramentaAlreadyExists;

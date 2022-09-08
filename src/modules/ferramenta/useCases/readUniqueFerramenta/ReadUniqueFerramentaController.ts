@@ -10,6 +10,6 @@ export class ReadUniqueFerramentaController {
 
         const result = await readUniqueFerramentaUseCase.execute( Number(id) );
 
-        return res.status(201).json(result);
+        return res.status(200).json(result);
     }
 }

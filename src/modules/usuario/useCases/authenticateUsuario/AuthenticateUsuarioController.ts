@@ -11,7 +11,7 @@ class AuthenticateUsuarioController {
 
         const token = await authenticateUsuarioUsecase.execute({ email, senha});
 
-        return res.status(201).json(token);
+        return res.status(200).json(token);
     }
 }
 

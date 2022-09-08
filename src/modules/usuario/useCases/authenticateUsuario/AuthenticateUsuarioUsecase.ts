@@ -32,7 +32,7 @@ class AuthenticateUsuarioUsecase {
         // Gerar token do usuário
         const token = sign({}, "821356fa-3ac1-4e99-9570-3266c65d07b8", {
             subject: usuarioAlreadyExists.id, 
-            expiresIn: "200s"
+            expiresIn: "600s"
         });
 
         return { token };

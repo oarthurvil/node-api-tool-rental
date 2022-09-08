@@ -1,33 +1,50 @@
-import { Usuario } from "@prisma/client";
 import { AppError } from "../../../../errors/AppError";
 import { prisma } from "../../../../prisma/client";
 
 export class DeleteUniqueUsuarioUseCase {
-    async execute( id: string ) {
+    async execute(id: string, idUsuarioViaToken: string) {
 
-        // Verificar a existência de um usuario
-        const usuarioAlreadyExists = await prisma.usuario.findUnique({
+        // Verificar se o usuário do token é admin
+        const usuarioAdmin = await prisma.usuario.findUnique({
             where: {
-                id: id
+                id: idUsuarioViaToken
             }
         });
 
-        if (!usuarioAlreadyExists) {
-            throw new AppError("Usuario doesn't exist!");
-        } 
-        
+        // Verificar se o id enviado no parametro é o mesmo do usuário no token
+        if (id === idUsuarioViaToken || usuarioAdmin.admin) {
+            // Verificar a existência de um usuario
+            const usuarioAlreadyExists = await prisma.usuario.findUnique({
+                where: {
+                    id: id
+                }
+            });
 
-        const usuarioDelete = await prisma.usuario.delete({
-            where: {
-                id: id
+            if (!usuarioAlreadyExists) {
+                throw new AppError("Usuário não existe!");
             }
-        });
 
-        const outputDeleteUsuario = {
-            usuario: usuarioAlreadyExists,
-            message: "Usuario deleted."
+            const usuarioDelete = await prisma.usuario.delete({
+                where: {
+                    id: id
+                }
+            });
+
+
+            const outputDeleteUsuario = {
+                usuario: usuarioAlreadyExists,
+                message: "Usuario deletado.",
+            }
+
+            return outputDeleteUsuario;
         }
 
-        return outputDeleteUsuario;
+        const outputDeleteUsuarioFail = {
+            erro: "Falta de privilégio",
+            message: "Você não possui privilégios para essa operação."
+        }
+
+        return outputDeleteUsuarioFail;
+
     }
 }

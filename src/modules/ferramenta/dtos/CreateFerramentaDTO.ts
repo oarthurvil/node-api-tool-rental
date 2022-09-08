@@ -1,6 +1,7 @@
 export interface CreateFerramentaDTO {
     nome: string;
     condicoes: string;
-    localizacao: string;
+    cidade: string;
+    uf: string;
     proprietarioId: string;
 }

@@ -7,11 +7,14 @@ export class UpdateUniqueLocacaoController {
         const { id } = req.params;
         const { valor, seguro, ferramentaId, locatarioId } = req.body;
 
+        const authToken = req.headers.authorization;        
+        const tokenUsuario = JSON.parse(atob(authToken.split('.')[1]));         
+        const idUsuarioViaToken = tokenUsuario.sub 
 
         const updateUniqueLocacaoUseCase = new UpdateUniqueLocacaoUseCase();
 
-        const result = await updateUniqueLocacaoUseCase.execute( Number(id), { valor, seguro, ferramentaId, locatarioId } );
+        const result = await updateUniqueLocacaoUseCase.execute( Number(id), { valor, seguro, ferramentaId, locatarioId }, idUsuarioViaToken );
 
-        return res.status(201).json(result);
+        return res.status(200).json(result);
     }
 }

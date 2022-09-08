@@ -4,7 +4,7 @@ import { prisma } from "../../../../prisma/client";
 import { CreateUsuarioDTO } from "../../dtos/CreateUsuarioDTO";
 
 export class CreateUsuarioUseCase {
-    async execute({ nome, email, senha }: CreateUsuarioDTO) {
+    async execute({ nome, email, senha, admin }: CreateUsuarioDTO) {
 
         // Verificar a existência do usuario
         const usuarioAlreadyExists = await prisma.usuario.findUnique({
@@ -24,7 +24,8 @@ export class CreateUsuarioUseCase {
             data: {
                 nome: nome,
                 email: email,
-                senha: senhaHash
+                senha: senhaHash,
+                admin: admin
             }
         })
 

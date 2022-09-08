@@ -19,12 +19,12 @@ const authenticateUsuarioController = new AuthenticateUsuarioController();
 const usuarioRoutes = Router();
 
 usuarioRoutes.post("/", createUsuarioController.handle);
-usuarioRoutes.get("/", ensureAuthenticated, readAllUsuariosController.handle);
-usuarioRoutes.get("/:id", readUniqueUsuarioController.handle);
-usuarioRoutes.put("/:id", updateUniqueUsuarioController.handle);
-usuarioRoutes.delete("/:id", deleteUniqueUsuarioController.handle);
-
 usuarioRoutes.post("/login", authenticateUsuarioController.handle)
+usuarioRoutes.get("/", ensureAuthenticated, readAllUsuariosController.handle);
+usuarioRoutes.get("/:id", ensureAuthenticated, readUniqueUsuarioController.handle);
+usuarioRoutes.put("/:id", ensureAuthenticated, updateUniqueUsuarioController.handle);
+usuarioRoutes.delete("/:id", ensureAuthenticated, deleteUniqueUsuarioController.handle);
+
 
 
 export {usuarioRoutes};

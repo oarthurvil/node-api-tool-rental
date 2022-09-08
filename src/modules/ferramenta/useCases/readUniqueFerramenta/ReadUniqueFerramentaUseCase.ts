@@ -12,7 +12,7 @@ export class ReadUniqueFerramentaUseCase {
         });
 
         if (!ferramentaAlreadyExists) {
-            throw new AppError("ferramenta doesn't exist!");
+            throw new AppError("Essa ferramenta não existe!");
         }
 
         const proprietarioFerramenta = await prisma.usuario.findUnique({
